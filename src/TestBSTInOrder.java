@@ -1,3 +1,4 @@
+
 public class TestBSTInOrder {
     public static void main(String[] args) {
         BST<String> treeInOrder = new BST<>();

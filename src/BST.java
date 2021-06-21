@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BST<E extends Comparable<E>> extends AbstractTree<E> {
     protected TreeNode<E> root;
     protected int size = 0;
@@ -72,7 +75,7 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
 
     public TreeNode<E> delete(TreeNode<E> root, E element) {
         if (root == null) {
-            return root;
+            return null;
         }
         int compareResult = element.compareTo(root.element);
         if (compareResult < 0) {
@@ -143,4 +146,53 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
         }
     }
 
+    public void printLevelOrder() {
+        int h = height(root);
+        int i;
+        for (i = 1; i <= h; i++) {
+            printCurrentLevel(root, i);
+        }
+    }
+
+    public int height(TreeNode<E> root) {
+        if (root == null) {
+            return 0;
+        } else {
+            int leftHeight = height(root.left);
+            int rightHeight = height(root.right);
+
+            if (leftHeight > rightHeight) {
+                return (leftHeight + 1);
+            } else {
+                return (rightHeight + 1);
+            }
+        }
+    }
+
+    public void printCurrentLevel(TreeNode<E> root, int level) {
+        if (root == null) {
+            return;
+        }
+        if (level == 1) {
+            System.out.println(root.element + " ");
+        } else if (level > 1) {
+            printCurrentLevel(root.left, level - 1);
+            printCurrentLevel(root.right, level - 1);
+        }
+    }
+
+    public void printLevelOrderQueue() {
+        Queue<TreeNode<E>> queue = new LinkedList<>();
+        queue.add(root);
+        while (!queue.isEmpty()) {
+            TreeNode<E> tempNode = queue.poll();
+            System.out.println(tempNode.element + "");
+            if(tempNode.left != null){
+                queue.add(tempNode.left);
+            }
+            if(tempNode.right != null){
+                queue.add(tempNode.right);
+            }
+        }
+    }
 }
