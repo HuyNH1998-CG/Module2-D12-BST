@@ -9,8 +9,15 @@ public class TestBSTPostOrder {
         treePostOrder.insert(35);
         treePostOrder.insert(31);
         treePostOrder.insert(42);
+        treePostOrder.insert2(99);
         treePostOrder.postorder();
-
+        System.out.println("Stop:");
+        treePostOrder.inorder();
+        System.out.println("Stop:");
+        treePostOrder.preorder();
+        System.out.println("Stop:");
+        treePostOrder.delete(27);
+        treePostOrder.postorder();
         System.out.println("Stop:");
 
     }

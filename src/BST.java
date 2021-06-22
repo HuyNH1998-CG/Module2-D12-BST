@@ -13,6 +13,22 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
             insert(object);
         }
     }
+    public void insert2(E e){
+        root = insertRec(root,e);
+    }
+
+    public TreeNode<E> insertRec(TreeNode<E> root, E key){
+        if(root == null){
+            root = new TreeNode<>(key);
+            return root;
+        }
+        if(key.compareTo(root.element) < 0){
+            root.left = insertRec(root.left, key);
+        } else if (key.compareTo(root.element) > 0){
+            root.right = insertRec(root.right, key);
+        }
+        return root;
+    }
 
     @Override
     public boolean insert(E e) {
@@ -44,7 +60,7 @@ public class BST<E extends Comparable<E>> extends AbstractTree<E> {
 
     public void search(E element) {
         root = search(root, element);
-        System.out.println(root.element + " " + root.left.element + " " + root.right.element);
+        System.out.println(root.element);
     }
 
     public TreeNode<E> search(TreeNode<E> root, E element) {
